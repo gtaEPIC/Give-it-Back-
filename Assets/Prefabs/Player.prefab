@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpPower: 5
+  jumpPower: 6.2
   idle: {fileID: 9100000, guid: 877c237dd65387b4c82ba0ef0a1296e6, type: 2}
   run: {fileID: 9100000, guid: d844b111e55b3a148b3d0968082a8b83, type: 2}
   jump: {fileID: 9100000, guid: 7b08f6d2605d3424b822a6f8e4594024, type: 2}
