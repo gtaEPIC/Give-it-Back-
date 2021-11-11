@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator _animator;
     private int[] cooldowns = new int[4]; // 0 = jump, 1 = attack, 2 = attackUp, 3 = attackDown
     private bool _canJump;
+    private int _touching;
     private bool _attacking;
     private enum Attacks
     {
@@ -140,10 +141,12 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         _canJump = true;
+        _touching++;
     }
     
     private void OnCollisionExit2D(Collision2D other)
     {
-        _canJump = false;
+        _touching--;
+        if (_touching == 0) _canJump = false;
     }
 }
