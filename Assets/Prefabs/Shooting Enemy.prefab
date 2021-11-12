@@ -29,7 +29,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 35.761, y: -7.4789, z: 0}
   m_LocalScale: {x: 2.4595542, y: 2.4595542, z: 2.4595542}
-  m_Children: []
+  m_Children:
+  - {fileID: 849010951603944359}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,10 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowX: -0.125
-  arrowY: 0.179
+  arrowY: 0.45
   fireRate: 3
-  firePower: 1
+  firePower: 5
   arrow: {fileID: 5358059215008190649, guid: aa0bd571ea81951429a37b06a1615780, type: 3}
+  range: {fileID: 6371145472509114982}
 --- !u!114 &5037310718487546440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,3 +116,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+--- !u!1 &6371145472509114982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 849010951603944359}
+  - component: {fileID: 2894651597933142037}
+  m_Layer: 0
+  m_Name: MotionTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &849010951603944359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6371145472509114982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.175, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6288431834172944059}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2894651597933142037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6371145472509114982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee578ef06c038b459cf7c47d0e338a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRadius: 6
