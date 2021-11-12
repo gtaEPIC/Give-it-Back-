@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class PlatformSetActive : MonoBehaviour
 {
-    public void start()
-    {
-        gameObject.SetActive(false);
-    }
+    
     public void PlatformVisable()
     {
         gameObject.SetActive(true);
