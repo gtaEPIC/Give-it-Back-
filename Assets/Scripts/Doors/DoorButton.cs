@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class DoorButton : MonoBehaviour
 {
-    [SerializeField] private DoorSetActive door;
+    public GameObject door;
+    private DoorSetActive _doorScript;
 
-
-    private void OnTriggerEnter2D(Collider2D button)
+    private void Start()
     {
-        if(Input.GetKey("e"))
+        _doorScript = door.GetComponent<DoorSetActive>();
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
-            door.DoorOpen();
-        }
+            if(Input.GetKey("e"))
+            {
+                _doorScript.DoorOpen();
+            }
 
 
-        if (Input.GetKey("r"))
-        {
-            door.DoorClose();
+            if (Input.GetKey("r"))
+            {
+                _doorScript.DoorClose();
+            }
         }
     }
 }
