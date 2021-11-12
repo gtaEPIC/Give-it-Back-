@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,22 +18,25 @@ public class PlatformButton : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void OnTriggerStay2D(Collider2D other)
     {
-        if (Input.GetKey("e"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            foreach (PlatformSetActive platform in _platformsSetActive)
+            if (Input.GetKey("e"))
             {
-                platform.PlatformVisable();
+                foreach (PlatformSetActive platform in _platformsSetActive)
+                {
+                    platform.PlatformVisable();
+                }
             }
-        }
 
 
-        if (Input.GetKey("r"))
-        {
-            foreach (PlatformSetActive platform in _platformsSetActive)
+            if (Input.GetKey("r"))
             {
-                platform.PlatformInvisable();
+                foreach (PlatformSetActive platform in _platformsSetActive)
+                {
+                    platform.PlatformInvisable();
+                }
             }
         }
     }
