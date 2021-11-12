@@ -4,23 +4,36 @@ using UnityEngine;
 
 public class PlatformButton : MonoBehaviour
 {
-    [SerializeField] private PlatformSetActive platform;
-    public void start()
+    public GameObject[] platforms;
+    private PlatformSetActive[] _platformsSetActive;
+    public void Start()
     {
-        gameObject.SetActive(false);
+        _platformsSetActive = new PlatformSetActive[platforms.Length];
+        for (var i = 0; i < platforms.Length; i++)
+        {
+            GameObject platform = platforms[i];
+            _platformsSetActive[i] = platform.GetComponent<PlatformSetActive>();
+            _platformsSetActive[i].PlatformInvisable();
+        }
     }
 
     private void Update()
     {
         if (Input.GetKey("e"))
         {
-            platform.PlatformVisable();
+            foreach (PlatformSetActive platform in _platformsSetActive)
+            {
+                platform.PlatformVisable();
+            }
         }
 
 
         if (Input.GetKey("r"))
         {
-            platform.PlatformInvisable();
+            foreach (PlatformSetActive platform in _platformsSetActive)
+            {
+                platform.PlatformInvisable();
+            }
         }
     }
 }
