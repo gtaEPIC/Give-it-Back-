@@ -28,6 +28,8 @@ public class Attackable : MonoBehaviour
                 if (gameObject.CompareTag("Player"))
                 {
                     gameObject.GetComponent<PlayerMovement>().enabled = false;
+                    Destroy(gameObject.GetComponent<Rigidbody2D>());
+                    Destroy(gameObject.GetComponent<CapsuleCollider2D>());
                 }
                 _animator.runtimeAnimatorController = death;
             }

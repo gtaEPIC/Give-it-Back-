@@ -2479,6 +2479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1181179727}
+  newPlayers: {fileID: 2734141806377317116, guid: 18c829769e12067458805e8755b2707a, type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
