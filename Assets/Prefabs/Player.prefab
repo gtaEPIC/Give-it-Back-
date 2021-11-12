@@ -253,6 +253,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  destroyOnDeath: 1
+  damaged: {fileID: 9100000, guid: dcb54052aab1b784fa2f5117cfdd954b, type: 2}
+  death: {fileID: 9100000, guid: 1c5db07381aac1243be887949565bc88, type: 2}
 --- !u!95 &20960174750384272
 Animator:
   serializedVersion: 3
