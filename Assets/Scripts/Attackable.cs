@@ -1,11 +1,10 @@
-﻿using UnityEditor.Animations;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Attackable : MonoBehaviour
 {
     public int health = 1;
     public bool destroyOnDeath = true;
-    public AnimatorController damaged, death;
+    public RuntimeAnimatorController damaged, death;
     public float invincibleTime = 0.5f;
     private float _timeStruck;
     private Animator _animator;

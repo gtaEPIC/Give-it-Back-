@@ -1,14 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     public float speed, jumpPower;
-    public AnimatorController idle, run, jump, fall, attack, attackUp, attackDown, death;
+    public RuntimeAnimatorController idle, run, jump, fall, attack, attackUp, attackDown, death;
     public GameObject attackPoint, attackPointUp, attackPointDown;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
