@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7242727475130511067}
   - component: {fileID: 6612012088836922345}
   - component: {fileID: 5037310718487546440}
+  - component: {fileID: 9187399888409376802}
   m_Layer: 0
   m_Name: Shooting Enemy
   m_TagString: Attackable
@@ -116,6 +117,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  destroyOnDeath: 1
+  damaged: {fileID: 0}
+  death: {fileID: 0}
+  invincibleTime: 0.5
+--- !u!60 &9187399888409376802
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3195817784383649358}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.42, y: 0.49}
+    newSize: {x: 0.42, y: 0.49}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.17999999, y: 0.24499999}
+      - {x: -0.21, y: 0.21499999}
+      - {x: -0.21, y: 0.145}
+      - {x: -0.13, y: 0.085}
+      - {x: -0.21, y: -0.145}
+      - {x: -0.21, y: -0.24499999}
+      - {x: 0.21, y: -0.24499999}
+      - {x: 0.21, y: 0.24499999}
 --- !u!1 &6371145472509114982
 GameObject:
   m_ObjectHideFlags: 0

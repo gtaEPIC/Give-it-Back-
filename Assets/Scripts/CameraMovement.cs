@@ -23,6 +23,9 @@ public class CameraMovement : MonoBehaviour
             if (_dieTime == 0) _dieTime = Time.time;
             else if (_dieTime + 4 < Time.time)
             {
+                _dieTime = 0;
+                Destroy(target.GetComponent<Rigidbody2D>());
+                Destroy(target.GetComponent<CapsuleCollider2D>());
                 // Create new player from prefabs
                 GameObject newPlayer = Instantiate(newPlayers, new Vector3(-4, -2, 0), Quaternion.identity);
                 target = newPlayer;
