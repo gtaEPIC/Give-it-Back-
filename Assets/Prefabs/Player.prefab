@@ -187,7 +187,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 2734141806377317116}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7bf3fa66f1f8a9643aa7ccc63be6f495, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -256,6 +256,7 @@ MonoBehaviour:
   destroyOnDeath: 1
   damaged: {fileID: 9100000, guid: dcb54052aab1b784fa2f5117cfdd954b, type: 2}
   death: {fileID: 9100000, guid: 1c5db07381aac1243be887949565bc88, type: 2}
+  invincibleTime: 0.5
 --- !u!95 &20960174750384272
 Animator:
   serializedVersion: 3
