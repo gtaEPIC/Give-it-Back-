@@ -9,9 +9,10 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private int[] cooldowns = new int[4]; // 0 = jump, 1 = attack, 2 = attackUp, 3 = attackDown
-    private bool _canJump;
-    private int _touching;
-    private bool _attacking;
+    private bool _canJump, _attacking, _doubleJumped; // _canJump is true if the player is on the ground or falling,
+                                                      // _attacking is true if the player is attacking
+                                                      // _doubleJumped is true if the player has double jumped
+    private int _touching; // _touching is the number of objects the player is touching
     private enum Attacks
     {
         none,
@@ -112,12 +113,23 @@ public class PlayerMovement : MonoBehaviour
         float y = Input.GetAxis("Vertical");
         float aX = Input.GetAxis("FireHorizontal");
         float aY = Input.GetAxis("FireVertical");
-        //Debug.Log(x + " " + y + " " + aX + " " + aY);
         Vector2 oldVelocity = _rigidbody2D.velocity;
-        float jumpSpeed = jumpPower;
+        if (oldVelocity.y <= 0) _canJump = true; // Player MAY be able to jump while they are falling
+        else _canJump = false;
+        float jumpSpeed = 0;
         float moveSpeed = x * speed;
-        if (!_canJump || cooldowns[0] > 0 || y <= 0) jumpSpeed = 0;
-        else cooldowns[0] = 30;
+        Debug.Log(oldVelocity.y + " " + y + " " + _canJump + " " + _doubleJumped);
+        if (_canJump && !_doubleJumped && y > 0 && oldVelocity.y < -1 && cooldowns[0] <= 0) // Allow player to double jump if they are falling
+        {
+            jumpSpeed = oldVelocity.y * -1 + jumpPower; // Force the player to jump up
+            _doubleJumped = true;
+            cooldowns[0] = 10;
+        }
+        else if (_canJump && y > 0 && !_doubleJumped && cooldowns[0] <= 0) // Allow a jump if player is on the ground
+        {
+            jumpSpeed = jumpPower;
+            cooldowns[0] = 10;
+        }
         Vector2 newVelocity = new Vector2(moveSpeed, oldVelocity.y + jumpSpeed);
         _rigidbody2D.velocity = newVelocity;
         Attacks attackType = Attacks.none;
@@ -136,13 +148,12 @@ public class PlayerMovement : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        _canJump = true;
+        _doubleJumped = false; // Reset double jump
         _touching++;
     }
     
     private void OnCollisionExit2D(Collision2D other)
     {
         _touching--;
-        if (_touching == 0) _canJump = false;
     }
 }
