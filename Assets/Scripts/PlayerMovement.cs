@@ -114,9 +114,8 @@ public class PlayerMovement : MonoBehaviour
         float aX = Input.GetAxis("FireHorizontal");
         float aY = Input.GetAxis("FireVertical");
         Vector2 oldVelocity = _rigidbody2D.velocity;
-        if (oldVelocity.y <= 0.1) _canJump = true; // Player MAY be able to jump while they are falling
+        if (oldVelocity.y <= 1) _canJump = true; // Player MAY be able to jump while they are falling
         else _canJump = false;
-        if (oldVelocity.y == 0) _doubleJumped = false;
         bool grounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundDetector.transform.position, groundDetector.GetComponent<WireMap>().attackRadius);
         foreach (Collider2D collider in colliders)
@@ -127,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
             }
         }
+        if (grounded) _doubleJumped = false;
         float jumpSpeed = 0;
         float moveSpeed = x * speed;
         Debug.Log(oldVelocity.y + " " + y + " " + grounded + " " + _doubleJumped);
