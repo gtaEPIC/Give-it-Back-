@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed, jumpPower;
     public RuntimeAnimatorController idle, run, jump, fall, attack, attackUp, attackDown, death;
-    public GameObject attackPoint, attackPointUp, attackPointDown;
+    public GameObject attackPoint, attackPointUp, attackPointDown, groundDetector;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private int[] cooldowns = new int[4]; // 0 = jump, 1 = attack, 2 = attackUp, 3 = attackDown
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack(GameObject point)
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(point.transform.position, attackPoint.GetComponent<WireMap>().attackRadius);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(point.transform.position, point.GetComponent<WireMap>().attackRadius);
         foreach (Collider2D hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag("Attackable"))
@@ -114,21 +114,31 @@ public class PlayerMovement : MonoBehaviour
         float aX = Input.GetAxis("FireHorizontal");
         float aY = Input.GetAxis("FireVertical");
         Vector2 oldVelocity = _rigidbody2D.velocity;
-        if (oldVelocity.y <= 0) _canJump = true; // Player MAY be able to jump while they are falling
+        if (oldVelocity.y <= 0.1) _canJump = true; // Player MAY be able to jump while they are falling
         else _canJump = false;
+        if (oldVelocity.y == 0) _doubleJumped = false;
+        bool grounded = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundDetector.transform.position, groundDetector.GetComponent<WireMap>().attackRadius);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("Ground") || collider.CompareTag("Attackable"))
+            {
+                grounded = true;
+                break;
+            }
+        }
         float jumpSpeed = 0;
         float moveSpeed = x * speed;
-        Debug.Log(oldVelocity.y + " " + y + " " + _canJump + " " + _doubleJumped);
-        if (_canJump && !_doubleJumped && y > 0 && oldVelocity.y < -1 && cooldowns[0] <= 0) // Allow player to double jump if they are falling
-        {
-            jumpSpeed = oldVelocity.y * -1 + jumpPower; // Force the player to jump up
-            _doubleJumped = true;
-            cooldowns[0] = 10;
-        }
-        else if (_canJump && y > 0 && !_doubleJumped && cooldowns[0] <= 0) // Allow a jump if player is on the ground
+        Debug.Log(oldVelocity.y + " " + y + " " + grounded + " " + _doubleJumped);
+        // Handle jumps and double jumps
+        if (y > 0 && _canJump && !_doubleJumped && grounded)
         {
             jumpSpeed = jumpPower;
-            cooldowns[0] = 10;
+        }
+        else if (y > 0 && _canJump && !_doubleJumped)
+        {
+            jumpSpeed = oldVelocity.y * -1 + jumpPower;
+            _doubleJumped = true;
         }
         Vector2 newVelocity = new Vector2(moveSpeed, oldVelocity.y + jumpSpeed);
         _rigidbody2D.velocity = newVelocity;
@@ -148,7 +158,6 @@ public class PlayerMovement : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        _doubleJumped = false; // Reset double jump
         _touching++;
     }
     
