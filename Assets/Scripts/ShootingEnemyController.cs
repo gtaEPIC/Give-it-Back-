@@ -29,11 +29,11 @@ public class ShootingEnemyController : MonoBehaviour
     void Update()
     {
         //Debug.Log(Time.time + "/" + nextFire);
-        if (_nextFire == 0)
+        if (_nextFire <= Time.time)
         {
             if (!InRange()) return;
             Debug.Log("Firing");
-            _nextFire = fireRate * 60;
+            _nextFire = Time.time + fireRate;
             Vector2 position = transform.position;
             GameObject arrow = Instantiate(this.arrow, new Vector2(position.x + arrowX, position.y + arrowY),
                 Quaternion.identity);
@@ -41,6 +41,5 @@ public class ShootingEnemyController : MonoBehaviour
             if (transform.rotation.y == 0) fireDirection *= -1;
             arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(fireDirection, 0);
         }
-        else _nextFire--;
     }
 }
