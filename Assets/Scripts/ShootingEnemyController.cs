@@ -12,7 +12,7 @@ public class ShootingEnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _nextFire = 60 * fireRate;
+        _nextFire = fireRate;
     }
 
     bool InRange()
