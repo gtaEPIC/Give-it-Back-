@@ -99,16 +99,12 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        cooldowns[0] = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Count down cooldowns
-        for (int i = 0; i < cooldowns.Length; i++)
-        {
-            if (cooldowns[i] > 0) cooldowns[i]--;
-        }
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         float aX = Input.GetAxis("FireHorizontal");
