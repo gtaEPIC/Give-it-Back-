@@ -5,13 +5,14 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed, jumpPower;
     public RuntimeAnimatorController idle, run, jump, fall, attack, attackUp, attackDown, death;
-    public GameObject attackPoint, attackPointUp, attackPointDown;
+    public GameObject attackPoint, attackPointUp, attackPointDown, groundDetector;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    private float[] cooldowns = new float[4]; // 0 = jump, 1 = attack, 2 = attackUp, 3 = attackDown
-    private bool _canJump;
-    private int _touching;
-    private bool _attacking;
+    private int[] cooldowns = new int[4]; // 0 = jump, 1 = attack, 2 = attackUp, 3 = attackDown
+    private bool _canJump, _attacking, _doubleJumped; // _canJump is true if the player is on the ground or falling,
+                                                      // _attacking is true if the player is attacking
+                                                      // _doubleJumped is true if the player has double jumped
+    private int _touching; // _touching is the number of objects the player is touching
     private enum Attacks
     {
         none,
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack(GameObject point)
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(point.transform.position, attackPoint.GetComponent<WireMap>().attackRadius);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(point.transform.position, point.GetComponent<WireMap>().attackRadius);
         foreach (Collider2D hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag("Attackable"))
@@ -109,10 +110,32 @@ public class PlayerMovement : MonoBehaviour
         float aX = Input.GetAxis("FireHorizontal");
         float aY = Input.GetAxis("FireVertical");
         Vector2 oldVelocity = _rigidbody2D.velocity;
-        float jumpSpeed = jumpPower;
+        if (oldVelocity.y <= 1) _canJump = true; // Player MAY be able to jump while they are falling
+        else _canJump = false;
+        bool grounded = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundDetector.transform.position, groundDetector.GetComponent<WireMap>().attackRadius);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("Ground") || collider.CompareTag("Attackable"))
+            {
+                grounded = true;
+                break;
+            }
+        }
+        if (grounded) _doubleJumped = false;
+        float jumpSpeed = 0;
         float moveSpeed = x * speed;
-        if (!_canJump || cooldowns[0] > Time.time || y <= 0) jumpSpeed = 0;
-        else cooldowns[0] = Time.time + 0.5f;
+        Debug.Log(oldVelocity.y + " " + y + " " + grounded + " " + _doubleJumped);
+        // Handle jumps and double jumps
+        if (y > 0 && _canJump && !_doubleJumped && grounded)
+        {
+            jumpSpeed = jumpPower;
+        }
+        else if (y > 0 && _canJump && !_doubleJumped)
+        {
+            jumpSpeed = oldVelocity.y * -1 + jumpPower;
+            _doubleJumped = true;
+        }
         Vector2 newVelocity = new Vector2(moveSpeed, oldVelocity.y + jumpSpeed);
         _rigidbody2D.velocity = newVelocity;
         Attacks attackType = Attacks.none;
@@ -131,13 +154,11 @@ public class PlayerMovement : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        _canJump = true;
         _touching++;
     }
     
     private void OnCollisionExit2D(Collision2D other)
     {
         _touching--;
-        if (_touching == 0) _canJump = false;
     }
 }
