@@ -13061,14 +13061,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
-    - target: {fileID: 6724392761192856681, guid: 36d44274f9eb9e74fb42fcf8b12809ca, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6724392761192856681, guid: 36d44274f9eb9e74fb42fcf8b12809ca, type: 3}
-      propertyPath: m_TagString
-      value: Attackable
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36d44274f9eb9e74fb42fcf8b12809ca, type: 3}
 --- !u!1001 &7110189993650047942
