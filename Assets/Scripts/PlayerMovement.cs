@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject attackPoint, attackPointUp, attackPointDown;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    private int[] cooldowns = new int[4]; // 0 = jump, 1 = attack, 2 = attackUp, 3 = attackDown
+    private float[] cooldowns = new float[4]; // 0 = jump, 1 = attack, 2 = attackUp, 3 = attackDown
     private bool _canJump;
     private int _touching;
     private bool _attacking;
@@ -98,26 +98,21 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        cooldowns[0] = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Count down cooldowns
-        for (int i = 0; i < cooldowns.Length; i++)
-        {
-            if (cooldowns[i] > 0) cooldowns[i]--;
-        }
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         float aX = Input.GetAxis("FireHorizontal");
         float aY = Input.GetAxis("FireVertical");
-        //Debug.Log(x + " " + y + " " + aX + " " + aY);
         Vector2 oldVelocity = _rigidbody2D.velocity;
         float jumpSpeed = jumpPower;
         float moveSpeed = x * speed;
-        if (!_canJump || cooldowns[0] > 0 || y <= 0) jumpSpeed = 0;
-        else cooldowns[0] = 30;
+        if (!_canJump || cooldowns[0] > Time.time || y <= 0) jumpSpeed = 0;
+        else cooldowns[0] = Time.time + 0.5f;
         Vector2 newVelocity = new Vector2(moveSpeed, oldVelocity.y + jumpSpeed);
         _rigidbody2D.velocity = newVelocity;
         Attacks attackType = Attacks.none;

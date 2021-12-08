@@ -16,13 +16,13 @@ public class DoorButton : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if(Input.GetKey("e"))
+            if(Input.GetKey("e") || Input.GetKey("joystick button 2"))
             {
                 _doorScript.DoorOpen();
             }
 
 
-            if (Input.GetKey("r"))
+            if (Input.GetKey("r") || Input.GetKey("joystick button 3"))
             {
                 _doorScript.DoorClose();
             }
