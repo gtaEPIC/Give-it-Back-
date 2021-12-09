@@ -242,6 +242,14 @@ MonoBehaviour:
   attackPointUp: {fileID: 4235290709873355716}
   attackPointDown: {fileID: 189993137675311024}
   groundDetector: {fileID: 5041213346617660227}
+  possibleCheckpoints:
+  - Spawn
+  - The Castle
+  - Vines
+  - Pit
+  - Stairs
+  - Final
+  - End
 --- !u!114 &7778116363154799043
 MonoBehaviour:
   m_ObjectHideFlags: 0
