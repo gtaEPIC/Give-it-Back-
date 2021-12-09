@@ -1214,6 +1214,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spikes (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1841181186026973709, guid: 8aaa600ab0202e949a3cb197d0ea7317, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 2.7172434
+      objectReference: {fileID: 0}
     - target: {fileID: 1841181186026973710, guid: 8aaa600ab0202e949a3cb197d0ea7317, type: 3}
       propertyPath: m_Size.x
       value: 2.7172434
@@ -7085,7 +7089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1841181186026973709, guid: 8aaa600ab0202e949a3cb197d0ea7317, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1.1603512
+      value: 0.9594834
       objectReference: {fileID: 0}
     - target: {fileID: 1841181186026973710, guid: 8aaa600ab0202e949a3cb197d0ea7317, type: 3}
       propertyPath: m_Size.x

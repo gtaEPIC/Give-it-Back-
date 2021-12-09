@@ -27,7 +27,7 @@ public class ArrowMovement : MonoBehaviour
             other.gameObject.GetComponent<Attackable>().OnAttack(1);
             Destroy(gameObject);
         }
-        else if (other.gameObject.CompareTag("Ground"))
+        else if (other.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }
