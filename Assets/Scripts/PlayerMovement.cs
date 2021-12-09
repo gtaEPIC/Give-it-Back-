@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _canJump, _attacking, _doubleJumped; // _canJump is true if the player is on the ground or falling,
                                                       // _attacking is true if the player is attacking
                                                       // _doubleJumped is true if the player has double jumped
-    private int _touching; // _touching is the number of objects the player is touching
+    private int _touches;
     
     private CameraMovement _cameraMovement;
     
@@ -116,22 +117,12 @@ public class PlayerMovement : MonoBehaviour
         Vector2 oldVelocity = _rigidbody2D.velocity;
         if (oldVelocity.y <= 1) _canJump = true; // Player MAY be able to jump while they are falling
         else _canJump = false;
-        bool grounded = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundDetector.transform.position, groundDetector.GetComponent<WireMap>().attackRadius);
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.CompareTag("Ground") || collider.CompareTag("Attackable"))
-            {
-                grounded = true;
-                break;
-            }
-        }
-        if (grounded) _doubleJumped = false;
+        if (_touches > 0) _doubleJumped = false;
         float jumpSpeed = 0;
         float moveSpeed = x * speed;
         //Debug.Log(oldVelocity.y + " " + y + " " + grounded + " " + _doubleJumped);
         // Handle jumps and double jumps
-        if (y > 0 && _canJump && !_doubleJumped && grounded)
+        if (y > 0 && _canJump && !_doubleJumped && _touches > 0)
         {
             jumpSpeed = jumpPower;
         }
@@ -155,23 +146,25 @@ public class PlayerMovement : MonoBehaviour
         }
         HandleAnimation(newVelocity, attackType);
     }
-    
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        _touching++;
-    }
-    
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        _touching--;
-    }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.tag);
         if (other.CompareTag("Respawn"))
         {
             _cameraMovement.SetRespawnPoint(other.gameObject);
+        }else if (other.CompareTag("Ground"))
+        {
+            _touches++;
+            _doubleJumped = false;
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            _touches--;
         }
     }
 }
