@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
                                                       // _attacking is true if the player is attacking
                                                       // _doubleJumped is true if the player has double jumped
     private int _touching; // _touching is the number of objects the player is touching
+    
+    private CameraMovement _cameraMovement;
+    
     private enum Attacks
     {
         none,
@@ -99,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _cameraMovement = GameObject.FindWithTag("MainCamera").GetComponent<CameraMovement>();
         cooldowns[0] = 0;
     }
 
@@ -125,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
         if (grounded) _doubleJumped = false;
         float jumpSpeed = 0;
         float moveSpeed = x * speed;
-        Debug.Log(oldVelocity.y + " " + y + " " + grounded + " " + _doubleJumped);
+        //Debug.Log(oldVelocity.y + " " + y + " " + grounded + " " + _doubleJumped);
         // Handle jumps and double jumps
         if (y > 0 && _canJump && !_doubleJumped && grounded)
         {
@@ -160,5 +164,14 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         _touching--;
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log(other.tag);
+        if (other.CompareTag("Respawn"))
+        {
+            _cameraMovement.SetRespawnPoint(other.gameObject);
+        }
     }
 }
