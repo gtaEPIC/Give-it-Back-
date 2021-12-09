@@ -23,12 +23,11 @@ public class PlatformButton : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-                foreach (PlatformSetActive platform in _platformsSetActive)
-                {
-                    platform.PlatformVisable();
-                    this.gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
-            }
-        }
-        
+             foreach (PlatformSetActive platform in _platformsSetActive)
+             {
+                  platform.PlatformVisable();
+                  this.gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
+             }
+        }  
     }
 }

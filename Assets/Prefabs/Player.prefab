@@ -124,6 +124,7 @@ Transform:
   - {fileID: 7071110977878259509}
   - {fileID: 3611558110061802640}
   - {fileID: 4816642227121739118}
+  - {fileID: 7139026358264751834}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -187,7 +188,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 2734141806377317116}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7bf3fa66f1f8a9643aa7ccc63be6f495, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -240,6 +241,7 @@ MonoBehaviour:
   attackPoint: {fileID: 1018483932141485003}
   attackPointUp: {fileID: 4235290709873355716}
   attackPointDown: {fileID: 189993137675311024}
+  groundDetector: {fileID: 5041213346617660227}
 --- !u!114 &7778116363154799043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +258,7 @@ MonoBehaviour:
   destroyOnDeath: 1
   damaged: {fileID: 9100000, guid: dcb54052aab1b784fa2f5117cfdd954b, type: 2}
   death: {fileID: 9100000, guid: 1c5db07381aac1243be887949565bc88, type: 2}
+  invincibleTime: 0.5
 --- !u!95 &20960174750384272
 Animator:
   serializedVersion: 3
@@ -319,3 +322,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRadius: 0.69
+--- !u!1 &5041213346617660227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7139026358264751834}
+  - component: {fileID: 7276735640943865813}
+  m_Layer: 0
+  m_Name: GroundDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7139026358264751834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5041213346617660227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.554, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2734141806377317105}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7276735640943865813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5041213346617660227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee578ef06c038b459cf7c47d0e338a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRadius: 0.22

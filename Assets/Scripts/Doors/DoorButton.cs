@@ -15,12 +15,11 @@ public class DoorButton : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-
-            if(other.gameObject.CompareTag("Player"))
-            {
-                _doorScript.DoorOpen();
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
-            }
+        if(other.gameObject.CompareTag("Player"))
+        {
+             _doorScript.DoorOpen();
+             this.gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
+        }
             
     }
 }
