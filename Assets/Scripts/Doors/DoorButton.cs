@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorButton : MonoBehaviour
 {
     public GameObject door;
+    public Sprite Buttonon;
     private DoorSetActive _doorScript;
 
     private void Start()
@@ -14,19 +15,12 @@ public class DoorButton : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
-            if(Input.GetKey("e") || Input.GetKey("joystick button 2"))
-            {
-                _doorScript.DoorOpen();
-            }
-
-
-            if (Input.GetKey("r") || Input.GetKey("joystick button 3"))
-            {
-                _doorScript.DoorClose();
-            }
+             _doorScript.DoorOpen();
+             this.gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
         }
+            
     }
 }
 
