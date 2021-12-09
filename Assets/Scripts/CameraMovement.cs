@@ -7,10 +7,14 @@ public class CameraMovement : MonoBehaviour
     public GameObject newPlayers;
     private Transform cameraTransform;
     private float _dieTime;
+    
+    public GameObject spawnPoint;
+    private GameObject _currentCheckPoint;
 
     private void Start()
     {
         cameraTransform = transform;
+        _currentCheckPoint = spawnPoint;
     }
 
     // Update is called once per frame
@@ -27,9 +31,14 @@ public class CameraMovement : MonoBehaviour
                 Destroy(target.GetComponent<Rigidbody2D>());
                 Destroy(target.GetComponent<CapsuleCollider2D>());
                 // Create new player from prefabs
-                GameObject newPlayer = Instantiate(newPlayers, new Vector3(-4, -2, 0), Quaternion.identity);
+                GameObject newPlayer = Instantiate(newPlayers, _currentCheckPoint.transform.position, Quaternion.identity);
                 target = newPlayer;
             }
         }
+    }
+    
+    public void SetRespawnPoint(GameObject checkpoint)
+    {
+        _currentCheckPoint = checkpoint;
     }
 }
