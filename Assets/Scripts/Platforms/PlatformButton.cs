@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlatformButton : MonoBehaviour
 {
     public GameObject[] platforms;
+    public Sprite Buttonon;
     private PlatformSetActive[] _platformsSetActive;
     public void Start()
     {
@@ -22,22 +23,12 @@ public class PlatformButton : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (Input.GetKey("e"))
-            {
                 foreach (PlatformSetActive platform in _platformsSetActive)
                 {
                     platform.PlatformVisable();
-                }
-            }
-
-
-            if (Input.GetKey("r"))
-            {
-                foreach (PlatformSetActive platform in _platformsSetActive)
-                {
-                    platform.PlatformInvisable();
-                }
+                    this.gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
             }
         }
+        
     }
 }
