@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Attackable
   - Ground
+  - SectionUI
   layers:
   - Default
   - TransparentFX
