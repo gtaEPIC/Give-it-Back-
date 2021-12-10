@@ -7941,6 +7941,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooting Enemy (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3195817784383649358, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6288431834172944059, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
       propertyPath: m_RootOrder
       value: 58
@@ -8686,6 +8690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooting Enemy (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3195817784383649358, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6288431834172944059, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -9385,6 +9393,10 @@ PrefabInstance:
     - target: {fileID: 3195817784383649358, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
       propertyPath: m_Name
       value: Shooting Enemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195817784383649358, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6288431834172944059, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
       propertyPath: m_RootOrder
@@ -10105,6 +10117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooting Enemy (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3195817784383649358, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6288431834172944059, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -10418,6 +10434,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooting Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3195817784383649358, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6288431834172944059, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -10478,6 +10498,10 @@ PrefabInstance:
     - target: {fileID: 3195817784383649358, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
       propertyPath: m_Name
       value: Shooting Enemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195817784383649358, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6288431834172944059, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
       propertyPath: m_RootOrder
@@ -10741,6 +10765,10 @@ PrefabInstance:
     - target: {fileID: 3195817784383649358, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
       propertyPath: m_Name
       value: Shooting Enemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195817784383649358, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6288431834172944059, guid: 56915d78fd2f94140baa4367b98f9e8c, type: 3}
       propertyPath: m_RootOrder
