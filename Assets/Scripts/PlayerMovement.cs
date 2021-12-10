@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed, jumpPower;
     public RuntimeAnimatorController idle, run, jump, fall, attack, attackUp, attackDown, death;
     public GameObject attackPoint, attackPointUp, attackPointDown, groundDetector;
+    public string[] possibleCheckpoints;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private int[] cooldowns = new int[4]; // 0 = jump, 1 = attack, 2 = attackUp, 3 = attackDown
@@ -15,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private int _touching; // _touching is the number of objects the player is touching
     
     private CameraMovement _cameraMovement;
+    private Text _sectionText;
     
     private enum Attacks
     {
@@ -103,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _cameraMovement = GameObject.FindWithTag("MainCamera").GetComponent<CameraMovement>();
+        _sectionText = GameObject.FindWithTag("SectionUI").GetComponent<Text>();
         cooldowns[0] = 0;
     }
 
@@ -172,6 +176,13 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Respawn"))
         {
             _cameraMovement.SetRespawnPoint(other.gameObject);
+            string name = other.gameObject.name;
+            int highest = 0;
+            for (var i = 0; i < possibleCheckpoints.Length; i++)
+            {
+                if (possibleCheckpoints[i] == name && i > highest) highest = i;
+            }
+            _sectionText.text = "1 - " + (highest+1) + "\n" + possibleCheckpoints[highest];
         }
     }
 }

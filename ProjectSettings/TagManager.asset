@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Attackable
   - Ground
+  - SectionUI
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
