@@ -27,6 +27,7 @@ public class Attackable : MonoBehaviour
                 if (gameObject.CompareTag("Player"))
                 {
                     gameObject.GetComponent<PlayerMovement>().enabled = false;
+                    gameObject.GetComponent<Collider2D>().sharedMaterial = null;
                 }
                 _animator.runtimeAnimatorController = death;
             }
