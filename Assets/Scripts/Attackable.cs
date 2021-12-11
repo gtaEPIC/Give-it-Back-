@@ -8,7 +8,9 @@ public class Attackable : MonoBehaviour
     public float invincibleTime = 0.5f;
     private float _timeStruck;
     private Animator _animator;
-    
+    public AudioSource deathAudio;
+    public AudioSource enemyAudio;
+
     private void Start()
     {
         if (damaged == null && death == null) return;
@@ -30,10 +32,12 @@ public class Attackable : MonoBehaviour
                     gameObject.GetComponent<Collider2D>().sharedMaterial = null;
                 }
                 _animator.runtimeAnimatorController = death;
+                deathAudio.Play();
             }
             else
             {
                 Destroy(gameObject);
+                enemyAudio.Play();
             }
         }
         else

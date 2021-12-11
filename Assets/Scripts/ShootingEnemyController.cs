@@ -6,6 +6,7 @@ public class ShootingEnemyController : MonoBehaviour
 {
     public float arrowX, arrowY, fireRate, firePower;
     public GameObject arrow;
+    public AudioSource arrowSFX;
     public GameObject range;
     private float _nextFire;
     
@@ -21,6 +22,7 @@ public class ShootingEnemyController : MonoBehaviour
         foreach (Collider2D hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag("Player")) return true;
+            arrowSFX.Play();
         }
         return false;
     }

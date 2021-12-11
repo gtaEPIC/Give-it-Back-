@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorButton : MonoBehaviour
 {
     public GameObject door;
+    public AudioSource doorActivate;
     public Sprite Buttonon;
     private DoorSetActive _doorScript;
 
@@ -18,6 +19,7 @@ public class DoorButton : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
              _doorScript.DoorOpen();
+            doorActivate.Play();
              this.gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
         }
             

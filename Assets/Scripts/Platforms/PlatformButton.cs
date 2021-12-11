@@ -7,6 +7,7 @@ public class PlatformButton : MonoBehaviour
 {
     public GameObject[] platforms;
     public Sprite Buttonon;
+    public AudioSource platformActivate;
     private PlatformSetActive[] _platformsSetActive;
     public void Start()
     {
@@ -27,7 +28,8 @@ public class PlatformButton : MonoBehaviour
              {
                   platform.PlatformVisable();
                   this.gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
-             }
+                platformActivate.Play();
+            }
         }  
     }
 }
