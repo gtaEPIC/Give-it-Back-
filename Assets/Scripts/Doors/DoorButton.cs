@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,20 @@ public class DoorButton : MonoBehaviour
     public AudioSource doorActivate;
     public Sprite Buttonon;
     private DoorSetActive _doorScript;
+    private bool _soundPlayed;
 
     private void Start()
     {
         _doorScript = door.GetComponent<DoorSetActive>();
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!_soundPlayed)
+        {
+            doorActivate.Play();
+            _soundPlayed = true;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -19,8 +30,7 @@ public class DoorButton : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
              _doorScript.DoorOpen();
-            doorActivate.Play();
-             this.gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
+             gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
         }
             
     }

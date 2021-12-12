@@ -22,7 +22,6 @@ public class ShootingEnemyController : MonoBehaviour
         foreach (Collider2D hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag("Player")) return true;
-            arrowSFX.Play();
         }
         return false;
     }
@@ -35,6 +34,7 @@ public class ShootingEnemyController : MonoBehaviour
         {
             if (!InRange()) return;
             Debug.Log("Firing");
+            arrowSFX.Play();
             _nextFire = Time.time + fireRate;
             Vector2 position = transform.position;
             GameObject arrow = Instantiate(this.arrow, new Vector2(position.x + arrowX, position.y + arrowY),
