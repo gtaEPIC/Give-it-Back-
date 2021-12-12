@@ -6,15 +6,18 @@ public class Attackable : MonoBehaviour
     public bool destroyOnDeath = true;
     public RuntimeAnimatorController damaged, death;
     public float invincibleTime = 0.5f;
+    public AudioClip deathClip, enemyClip;
     private float _timeStruck;
     private Animator _animator;
-    public AudioSource deathAudio;
-    public AudioSource enemyAudio;
+    private AudioSource _audioSource;
+
+    
 
     private void Start()
     {
         if (damaged == null && death == null) return;
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
     
     public void OnAttack(int damage)
@@ -32,12 +35,14 @@ public class Attackable : MonoBehaviour
                     gameObject.GetComponent<Collider2D>().sharedMaterial = null;
                 }
                 _animator.runtimeAnimatorController = death;
-                deathAudio.Play();
+                _audioSource.clip = deathClip;
+                _audioSource.Play();
             }
             else
             {
                 Destroy(gameObject);
-                enemyAudio.Play();
+                _audioSource.clip = enemyClip;
+                _audioSource.Play();
             }
         }
         else

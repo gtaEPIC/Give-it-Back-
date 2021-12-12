@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private CameraMovement _cameraMovement;
     private Text _sectionText;
 
-    public AudioSource playerSwingSFX;
+    private AudioSource playerSwingSFX;
 
     private enum Attacks
     {
@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         _cameraMovement = GameObject.FindWithTag("MainCamera").GetComponent<CameraMovement>();
         _sectionText = GameObject.FindWithTag("SectionUI").GetComponent<Text>();
+        playerSwingSFX = GetComponent<AudioSource>();
         cooldowns[0] = 0;
     }
 
