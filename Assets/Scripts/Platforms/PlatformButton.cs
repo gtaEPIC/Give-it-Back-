@@ -7,7 +7,10 @@ public class PlatformButton : MonoBehaviour
 {
     public GameObject[] platforms;
     public Sprite Buttonon;
+    public AudioSource platformActivate;
     private PlatformSetActive[] _platformsSetActive;
+    private bool _soundPlayed;
+    
     public void Start()
     {
         _platformsSetActive = new PlatformSetActive[platforms.Length];
@@ -18,6 +21,15 @@ public class PlatformButton : MonoBehaviour
             _platformsSetActive[i].PlatformInvisable();
         }
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!_soundPlayed)
+        {
+            platformActivate.Play();
+            _soundPlayed = true;
+        }
+    }
 
     public void OnTriggerStay2D(Collider2D other)
     {
@@ -26,7 +38,7 @@ public class PlatformButton : MonoBehaviour
              foreach (PlatformSetActive platform in _platformsSetActive)
              {
                   platform.PlatformVisable();
-                  this.gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
+                  gameObject.GetComponent<SpriteRenderer>().sprite = Buttonon;
              }
         }  
     }

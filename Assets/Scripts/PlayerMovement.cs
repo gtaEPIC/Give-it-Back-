@@ -18,7 +18,9 @@ public class PlayerMovement : MonoBehaviour
     
     private CameraMovement _cameraMovement;
     private Text _sectionText;
-    
+
+    private AudioSource playerSwingSFX;
+
     private enum Attacks
     {
         none,
@@ -85,16 +87,20 @@ public class PlayerMovement : MonoBehaviour
                 case Attacks.attackRight:
                     gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
                     _animator.runtimeAnimatorController = attack;
+                    playerSwingSFX.Play();
                     break;
                 case Attacks.attackLeft:
                     gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
                     _animator.runtimeAnimatorController = attack;
+                    playerSwingSFX.Play();
                     break;
                 case Attacks.attackUp:
                     _animator.runtimeAnimatorController = attackUp;
+                    playerSwingSFX.Play();
                     break;
                 case Attacks.attackDown:
                     _animator.runtimeAnimatorController = attackDown;
+                    playerSwingSFX.Play();
                     break;
             }
         }
@@ -107,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         _cameraMovement = GameObject.FindWithTag("MainCamera").GetComponent<CameraMovement>();
         _sectionText = GameObject.FindWithTag("SectionUI").GetComponent<Text>();
+        playerSwingSFX = GetComponent<AudioSource>();
         cooldowns[0] = 0;
     }
 

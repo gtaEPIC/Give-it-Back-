@@ -6,6 +6,7 @@ public class ShootingEnemyController : MonoBehaviour
 {
     public float arrowX, arrowY, fireRate, firePower;
     public GameObject arrow;
+    public AudioSource arrowSFX;
     public GameObject range;
     private float _nextFire;
     
@@ -33,6 +34,7 @@ public class ShootingEnemyController : MonoBehaviour
         {
             if (!InRange()) return;
             Debug.Log("Firing");
+            arrowSFX.Play();
             _nextFire = Time.time + fireRate;
             Vector2 position = transform.position;
             GameObject arrow = Instantiate(this.arrow, new Vector2(position.x + arrowX, position.y + arrowY),
