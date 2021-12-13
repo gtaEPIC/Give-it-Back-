@@ -244,7 +244,8 @@ MonoBehaviour:
   attackPointDown: {fileID: 189993137675311024}
   groundDetector: {fileID: 5041213346617660227}
   possibleCheckpoints:
-  - Spawn
+  - Tutorial
+  - Entrance
   - The Castle
   - Vines
   - Pit
@@ -268,8 +269,6 @@ MonoBehaviour:
   damaged: {fileID: 9100000, guid: dcb54052aab1b784fa2f5117cfdd954b, type: 2}
   death: {fileID: 9100000, guid: 1c5db07381aac1243be887949565bc88, type: 2}
   invincibleTime: 0.5
-  deathAudio: {fileID: 0}
-  enemyAudio: {fileID: 0}
   deathClip: {fileID: 8300000, guid: c47fb7700985252478b37a707a2e4228, type: 3}
   enemyClip: {fileID: 8300000, guid: 3695695bcc6e49142be44959881ca675, type: 3}
 --- !u!95 &20960174750384272

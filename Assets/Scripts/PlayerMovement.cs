@@ -187,9 +187,12 @@ public class PlayerMovement : MonoBehaviour
             int highest = 0;
             for (var i = 0; i < possibleCheckpoints.Length; i++)
             {
+                Debug.Log(possibleCheckpoints[i] + " : " + name + " : " + i);
                 if (possibleCheckpoints[i] == name && i > highest) highest = i;
             }
-            _sectionText.text = "1 - " + (highest+1) + "\n" + possibleCheckpoints[highest];
+            Debug.Log("Highest: " + highest + " | Name: " + name);
+            if (highest == 0) _sectionText.text = ""; // Hide section details for tutorial
+            else _sectionText.text = "1 - " + highest + "\n" + possibleCheckpoints[highest];
         }
     }
 }
