@@ -35,12 +35,14 @@ public class Attackable : MonoBehaviour
                     gameObject.GetComponent<Collider2D>().sharedMaterial = null;
                 }
                 _animator.runtimeAnimatorController = death;
+                if (!_audioSource) return;
                 _audioSource.clip = deathClip;
                 _audioSource.Play();
             }
             else
             {
                 Destroy(gameObject);
+                if (!_audioSource) return;
                 _audioSource.clip = enemyClip;
                 _audioSource.Play();
             }
